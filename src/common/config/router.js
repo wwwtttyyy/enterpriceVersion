@@ -5,76 +5,37 @@ let routes = [
   {
     path: '/',
     name: 'layout',
-    redirect: '/main/home',
+    redirect: '/organization/index',
     component: 'main/index',
     children: [
       {
-        component: 'main/home',
-        redirect: 'main/component/messageCenter',
+        path: '/organization/index',
+        component: 'organization/index',
+        redirect: '/organization/unitInfo',
         children: [
           {
-            component: 'main/component/messageCenter'
+            // path: ''
+            component: 'organization/unitInfo/index'
           },
           {
-            component: 'main/component/statistic'
-          }
-        ]
-      },
-      {
-        path: '/titleAppraisal/index',
-        component: 'titleAppraisal/index'
-      },
-      {
-        path: '/titleAppraisal/edit/index',
-        component: 'titleAppraisal/edit/index',
-        redirect: 'titleAppraisal/edit/pages/promise',
-        children: [
-          {
-            component: 'titleAppraisal/edit/pages/promise'
+            // path: ''
+            component: 'organization/branchInfo/index'
           },
           {
-            component: 'titleAppraisal/edit/pages/basicInfo'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/education'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/mainExperience'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/talentMaterials'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/academic'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/performanceResult'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/performanceReward'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/performancePatent'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/qualification'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/researchMaterial'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/otherMaterial'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/submit'
-          },
-          {
-            component: 'titleAppraisal/edit/pages/jobSummary'
+            // path: ''
+            component: 'organization/workAccount/index'
           }
         ]
       }
     ]
-  },
+  }
+
+]
+/**
+ * 基础路由
+ * @type { *[] }
+ */
+let constant = [
   {
     path: '/login',
     name: 'login',
@@ -120,4 +81,5 @@ function getstr(str) {
   }
   return str
 }
-export default getRoute()
+// export default getRoute()
+export const constantRouterMap = getRoute(constant)

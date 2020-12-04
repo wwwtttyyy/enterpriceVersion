@@ -1,32 +1,19 @@
 <template>
 
-  <el-container style="position:absolute;top:140px;bottom:0;left:20px;right:0;overflow:hidden" >
+  <el-container style="position:absolute;top:140px;bottom:0;left:20px;right:0;overflow:hidden">
     <el-container style="position:absolute;top:0;bottom:0;left:0;right:0;overflow:hidden">
       <el-aside width="250px" class="bg-white" style="overflow:hidden;padding:20px">
-        <div style="height:120px;display:flex;">
-          <div class="d-block float-left align-middle" style="align-self:center;display:relative">
-            <el-avatar class="" :size="70" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
-            <p class="upload" style="display:absolute;top:0;text-align:center;font-size:10px">上传头像</p>
-          </div>
-          <div class=" d-block float-left  " style="margin-left:20px;align-self:center">
-            <span style="margin-bottom:20px" class="font-weight-bold d-inline">{{name}}</span><br>
-            <span>
-              <el-tag style="margin-top:20px">{{work}}</el-tag>
-            </span>
-          </div>
+        <div style="height:40px;line-height:40px;text-align:center;display:flex;background-color:#F2F6FC">
+          组织机构管理
         </div>
         <ul class="nav flex-column menu nav-pills " style=" height:100%">
-            <li class="nav-item" @click="changeNav(1,'/main/component/messageCenter')">
-              <a class="nav-link " :class="{activeItem : index == 1}">消息中心</a>
-            </li>
-            <li class="nav-item" @click="changeNav(2,'/main/component/statistic')">
-              <a class="nav-link" :class="{activeItem : index == 2}" >数据统计</a>
-            </li>
-          </ul>
+          <li class="nav-item" :index="item.index" v-for="(item,index) in list" :key="index" @click="changeNav(item.index,item.path)">
+            <a class="nav-link " :class="{activeItem : item.index == currentindex}">{{item.name}}</a>
+          </li>
+        </ul>
       </el-aside>
       <el-main style="padding:0;" class="">
         <div class="ml-3 bg-white" style="padding:20px;height:100%;overflow:auto">
-          <!-- <router-link to="{ path: '/login' }">denglu</router-link> -->
           <router-view></router-view>
         </div>
       </el-main>
@@ -40,14 +27,15 @@ export default {
   props: [''],
   data() {
     return {
-      index: 1,
-      name: '小明',
-      work: '高级工程师'
+      currentindex: 0,
+      list: []
     }
   },
 
-  mounted () {
-
+  mounted() {},
+  created() {
+    this.list = this.$conf.organization.list
+    console.log(this.list)
   },
 
   components: {},
@@ -56,7 +44,7 @@ export default {
 
   methods: {
     changeNav(index, path) {
-      this.index = index
+      this.currentindex = index
       this.jumpToPage(path)
     },
     jumpToPage(path) {
@@ -68,8 +56,8 @@ export default {
 }
 </script>
 <style lang='' scoped>
-.upload:hover{
-  cursor:pointer
+.upload:hover {
+  cursor: pointer;
 }
 .activeItem {
   color: #fff;
@@ -79,8 +67,8 @@ export default {
   height: 50px;
   display: flex;
 }
-.menu li a:hover{
-  background-color: #F2F6FC;
+.menu li a:hover {
+  background-color: #f2f6fc;
 }
 .menu li a {
   width: 100%;

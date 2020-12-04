@@ -7,27 +7,8 @@
       <el-container class="d-flex align-items-center bg-white">
         <div class=" mb-0 mr-auto ">
           <el-menu  class="el-menu-demo border-0" mode="horizontal" :default-active="activeIndex" @select="handleSelect">
-            <el-menu-item index="1" @click="jumpToPage('/main/home')">首页</el-menu-item>
-            <el-menu-item index="2">个人资料</el-menu-item>
-            <el-submenu index="3">
-              <template slot="title">证书管理</template>
-              <el-menu-item index="3-1">证书审验</el-menu-item>
-              <el-menu-item index="3-2">证书信息</el-menu-item>
-              <el-menu-item index="3-3">电子信息单</el-menu-item>
-            </el-submenu>
-            <el-submenu index="4">
-              <template slot="title">
-                申报职称
-              </template>
-              <el-menu-item index="4-1">职称认定</el-menu-item>
-              <el-menu-item index="4-2" @click="jumpToPage('/titleAppraisal/index')">职称评审</el-menu-item>
-              <el-menu-item index="4-3">重新确认</el-menu-item>
-              <el-menu-item index="4-4">遗失补办</el-menu-item>
-            </el-submenu>
-            <el-menu-item index="5">报表下载</el-menu-item>
-            <el-menu-item index="6">费用管理</el-menu-item>
-            <el-menu-item index="7">帮助中心</el-menu-item>
-            <el-menu-item index="8">意见建议</el-menu-item>
+            <el-menu-item index="7">组织机构</el-menu-item>
+            <el-menu-item index="8">操作说明</el-menu-item>
           </el-menu>
         </div>
         <div>
@@ -45,7 +26,6 @@
             <el-menu-item><a style="font-size:20px" class="el-icon-user" title="个人中心"></a></el-menu-item>
             <el-menu-item><a style="font-size:20px" class="el-icon-switch-button" title="退出" @click="loginOut"></a></el-menu-item>
           </el-menu>
-
         </div>
       </el-container>
       <router-view />

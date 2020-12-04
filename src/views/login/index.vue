@@ -11,8 +11,13 @@
             </div>
             <div class="card-body">
               <el-form label-width="0px" :model="form" ref="form" :rules="rules">
-                <el-form-item prop="username" style="padding-left:0px">
-                  <el-input placeholder="请输入账户" v-model="form.username">
+                <el-form-item prop="enterprice" style="padding-left:0px">
+                  <el-input placeholder="请输入单位名称" v-model="form.enterprice">
+                    <template slot="prepend">单位</template>
+                  </el-input>
+                </el-form-item>
+                <el-form-item prop="name" style="padding-left:0px">
+                  <el-input placeholder="请输入账户" v-model="form.name">
                     <template slot="prepend">账户</template>
                   </el-input>
                 </el-form-item>
@@ -38,15 +43,21 @@
 </template>
 
 <script>
+// import {login} from '@/api/login'
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
       form: {
-        username: '',
+        enterprice: '',
+        name: '',
         password: ''
       },
       rules: {
-        username: [
+        enterprice: [
+          { required: true, message: '请输入单位名称', trigger: 'blur' }
+        ],
+        name: [
           { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
@@ -57,11 +68,18 @@ export default {
     this.form = this.$form.createForm(this, { name: 'normal_login' })
   },
   methods: {
+    ...mapActions(['Login', 'Logout']),
+    async logins(form) {
+      this.$store.dispatch('Login', form).then(() => {
+        this.$router.push({ path: '/' }) // 登录成功之后重定向到首页
+      }).catch(() => {
+        this.$message.error('您的账户或密码有误') // 登录失败提示错误
+      })
+    },
     onSubmit(formName) {
-      // const that = this
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$router.push('/')
+          this.logins(this.form)
         } else {
           console.log('error submit!!')
           return false

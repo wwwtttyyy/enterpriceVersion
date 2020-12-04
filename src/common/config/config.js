@@ -65,5 +65,39 @@ export default {
         path: '/titleAppraisal/edit/pages/submit',
         show: false }
     ]
+  },
+  organization: {
+    list: [
+      {
+        index: 0,
+        name: '单位信息',
+        path: '/organization/unitInfo'
+      },
+      {
+        index: 1,
+        name: '分公司信息',
+        path: '/organization/branchInfo'
+      },
+      {
+        index: 2,
+        name: '签章管理',
+        path: ''
+      },
+      {
+        index: 3,
+        name: '工作账号',
+        path: '/organization/workAccount'
+      },
+      {
+        index: 4,
+        name: '改名记录',
+        path: ''
+      },
+      {
+        index: 5,
+        name: '签章修改日志',
+        path: ''
+      }
+    ]
   }
 }

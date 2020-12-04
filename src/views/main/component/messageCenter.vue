@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <el-tabs v-model="activeName" @tab-click="handleClick" >
-      <el-tab-pane label="未读消息" name="first" style="height:480px;width:100%;padding:10px" class="tab">
+  <div ref="element" style="height:100%">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="未读消息" name="first" style="width:100%;padding:10px" :style="{height:height}" class="tab">
         <el-card v-for="(item,index) in data" :key="index" shadow="hover" style="padding-bottom:20px;margin-bottom:30px">
           <div><span class="badge badge-primary">系统通知</span>{{item.content}}</div>
           <div style="margin-top:20px ;float:left">{{item.time}}</div>
@@ -10,10 +10,6 @@
       </el-tab-pane>
       <el-tab-pane label="已读消息" name="second" style="height:480px;width:100%;padding:10px">暂无</el-tab-pane>
     </el-tabs>
-
-    <!-- <el-pagination background layout="prev, pager, next" :total="data.length" :page-size=3>
-
-    </el-pagination> -->
 
   </div>
 </template>
@@ -24,6 +20,7 @@ export default {
   props: [''],
   data() {
     return {
+      height: '',
       activeName: 'first',
       data: [
         {
@@ -57,7 +54,15 @@ export default {
 
   components: {},
 
-  computed: {},
+  computed: {
+
+  },
+  mounted () {
+    let height = this.$refs.element.offsetHeight - 40
+    console.log(height)
+
+    this.height = height + 'px'
+  },
 
   methods: {
     handleClick(tab, event) {
@@ -67,11 +72,12 @@ export default {
 }
 </script>
 <style lang='' scoped>
-.tab{
-  overflow: auto
+.tab {
+  overflow: auto;
+
 }
 
-.tab::-webkit-scrollbar{
-    display: none;
+.tab::-webkit-scrollbar {
+  display: none;
 }
 </style>
