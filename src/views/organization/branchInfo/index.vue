@@ -20,6 +20,10 @@ export default {
     return {}
   },
 
+  created () {
+    this.$emit('refresh')
+  },
+
   components: {
     card
   },

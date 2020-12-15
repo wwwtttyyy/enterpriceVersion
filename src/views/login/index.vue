@@ -9,8 +9,8 @@
             <div class="card-header bg-white mb-0">
               <h5 class="text-center">用户登录</h5>
             </div>
-            <div class="card-body">
-              <el-form label-width="0px" :model="form" ref="form" :rules="rules">
+            <div class="card-body" >
+              <el-form label-width="0px" :model="form" ref="form" :rules="rules"  >
                 <el-form-item prop="enterprice" style="padding-left:0px">
                   <el-input placeholder="请输入单位名称" v-model="form.enterprice">
                     <template slot="prepend">单位</template>

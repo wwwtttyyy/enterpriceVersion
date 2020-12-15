@@ -7,11 +7,11 @@
       </slot>
     </div>
 
-    <el-dialog :title="title" :visible.sync="dialogVisible" width="width" :before-close="handleClose">
+    <el-dialog :title="title" :visible.sync="dialogVisible" :width="width" :before-close="handleClose">
       <slot name="body"></slot>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="handleConfirm">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -41,6 +41,10 @@ export default {
   methods: {
     handleClose(done) {
       done()
+    },
+    handleConfirm() {
+      this.$emit('handleConfirm')
+      this.dialogVisible = false
     }
   }
 }

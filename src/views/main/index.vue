@@ -6,9 +6,8 @@
       </el-header>
       <el-container class="d-flex align-items-center bg-white">
         <div class=" mb-0 mr-auto ">
-          <el-menu  class="el-menu-demo border-0" mode="horizontal" :default-active="activeIndex" @select="handleSelect">
-            <el-menu-item index="7">组织机构</el-menu-item>
-            <el-menu-item index="8">操作说明</el-menu-item>
+          <el-menu  class="el-menu-demo border-0" mode="horizontal" :default-active="currentPath" >
+            <el-menu-item :index="item.path" v-for="(item, index) in menuList" :key="index" @click="jumpToPage(item.path)">{{item.title }}</el-menu-item>
           </el-menu>
         </div>
         <div>
@@ -28,19 +27,31 @@
           </el-menu>
         </div>
       </el-container>
-      <router-view />
+      <!-- <keep-alive> -->
+        <router-view />
+      <!-- </keep-alive> -->
     </el-container>
   </div>
 </template>
 
 <script>
+import store from '@/store'
 export default {
   name: '',
   props: [''],
   data() {
     return {
-      activeIndex: '1'
+      menuList: [],
+      currentPath: '/organization/index',
+      activeIndex: '0'
     }
+  },
+
+  created() {
+    // console.log(this.$route.path)
+    // this.currentPath = this.$route.path
+    this.menuList = store.getters.currentMenu
+    console.log(this.menuList)
   },
 
   components: {},
@@ -60,7 +71,14 @@ export default {
       this.$alert('确定要退出吗？', '退出系统', {
         confirmButtonText: '确定',
         callback: action => {
-          this.$router.push('/login')
+          if (action === 'confirm') {
+            // 还要做一些操作
+            this.$store.dispatch('Logout').then(() => {
+              this.$router.push('/login')
+            }).catch((err) => {
+              console.log(err)
+            })
+          }
         }
       })
     }

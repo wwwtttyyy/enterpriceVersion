@@ -2,16 +2,17 @@
   <div>
     <el-table :data="tableData" row-key="id" border>
       <el-table-column v-for="(item, index) in col" :key="`col_${index}`" :prop="col[index].prop" :label="item.label" align="center"></el-table-column>
-      <el-table-column prop="operation" label="操作" width="150px">
-        <!-- <template slot-scope="scope">
-          <modal :title="modalTitle">
+      <el-table-column prop="operation" label="操作" width="150px" align="center">
+        <template slot-scope="scope">
+          <!-- <modal :title="modalTitle">
             <el-button @click="handleClick(scope.row)" style="padding:10px" slot="component" type="primary" icon="el-icon-edit"></el-button>
             <div slot="content" >
               <slot ></slot>
             </div>
-          </modal>
+          </modal> -->
+          <slot name="start"  :data="scope.row"></slot>
           <el-button @click="deleteMessageBox(scope.row)" style="padding:10px;margin-left:10px" type="danger" icon="el-icon-delete"></el-button>
-        </template> -->
+        </template>
       </el-table-column>
     </el-table>
   </div>

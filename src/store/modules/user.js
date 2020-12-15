@@ -37,6 +37,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           const result = response
+          sessionStorage.setItem('token', result.data[0].token)
           storage.set(ACCESS_TOKEN, result.data[0].token, 7 * 24 * 60 * 60 * 1000)
           storage.set(USER_NAME, userInfo.name)
           storage.set(USER_PASSWORD, userInfo.password)
@@ -62,45 +63,26 @@ const user = {
           const result = response.data
           console.log(result)
           if (result.role) {
-            // const role = result.role
-            // role.permissions = result.role.permissions
-            // role.permissions.map(per => {
-            //   if (per.actionEntitySet != null && per.actionEntitySet.length > 0) {
-            //     const action = per.actionEntitySet.map(action => { return action.action })
-            //     per.actionList = action
-            //   }
-            // })
-            // role.permissionList = role.permissions.map(permission => { return permission.permissionId })
             commit('SET_ROLES', result.role)
             commit('SET_INFO', result)
           } else {
             reject(new Error('getInfo: roles must be a non-null array !'))
           }
-
-          // commit('SET_NAME', result.name)
-          // commit('SET_AVATAR', result.avatar)
-
           resolve(response)
         }).catch(error => {
           reject(error)
         })
       })
-    }
+    },
 
     // 登出
-    // Logout ({ commit, state }) {
-    //   return new Promise((resolve) => {
-    //     logout(state.token).then(() => {
-    //       resolve()
-    //     }).catch(() => {
-    //       resolve()
-    //     }).finally(() => {
-    //       commit('SET_TOKEN', '')
-    //       commit('SET_ROLES', [])
-    //       storage.remove(ACCESS_TOKEN)
-    //     })
-    //   })
-    // }
+    Logout ({ commit }) {
+      commit('SET_TOKEN', '')
+      commit('SET_ROLES', [])
+      commit('SET_INFO', {})
+      storage.remove(ACCESS_TOKEN)
+      sessionStorage.setItem('token', '')
+    }
 
   }
 }

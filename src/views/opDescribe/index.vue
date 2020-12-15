@@ -6,18 +6,15 @@
         <div style="height:40px;line-height:40px;text-align:center;display:flex;background-color:#F2F6FC">
           组织机构管理
         </div>
-        <!-- <ul class="nav flex-column menu nav-pills " style=" height:100%">
+        <ul class="nav flex-column menu nav-pills " style=" height:100%">
           <li class="nav-item" :index="item.index" v-for="(item,index) in subMenu" :key="index" @click="changeNav(item.index,item.path)">
             <a class="nav-link " :class="{activeItem : index == currentindex}">{{item.title}}</a>
           </li>
-        </ul> -->
-        <el-menu class="el-menu-demo border-0" mode="vertical" :default-active="currentPath">
-          <el-menu-item style="text-align:center" :index="item.path" v-for="(item, index) in subMenu" :key="index" @click="jumpToPage(item.path)">{{item.title }}</el-menu-item>
-        </el-menu>
+        </ul>
       </el-aside>
       <el-main style="padding:0;" class="">
         <div class="ml-3 bg-white" style="padding:20px;height:100%;overflow:auto">
-          <router-view @refresh="refresh"></router-view>
+          <router-view></router-view>
         </div>
       </el-main>
     </el-container>
@@ -39,7 +36,7 @@ export default {
 
   mounted() {},
   created() {
-    this.currentPath = this.$route.path
+    console.log(this.$route.path)
     this.getSubMenu()
   },
 
@@ -48,24 +45,22 @@ export default {
   computed: {},
 
   methods: {
-    refresh() {
-      this.getSubMenu()
-    },
     changeNav(index, path) {
       this.currentindex = index
       this.jumpToPage(path)
     },
     jumpToPage(path) {
       if (path === this.$route.path) return
+      // this.currentPath = path
       this.$router.push(path)
     },
     getSubMenu() {
-      this.currentindex = this.$route.path
+      this.currentPath = this.$route.path
       let routers = store.getters.addRouters[0].children
-      routers.forEach((item) => {
-        if (item.children && this.find(item.children, this.currentPath)) {
+      routers.forEach(item => {
+        if (item.redirect === this.currentPath) {
           let index = 0
-          this.subMenu = item.children.map((item) => {
+          this.subMenu = item.children.map(item => {
             const obj = {
               index: index++,
               title: item.meta.title,
@@ -75,25 +70,11 @@ export default {
           })
         }
       })
-    },
-    find(father, son) {
-      let flag = false
-      father.forEach((item) => {
-        if (item.path === son) {
-          flag = true
-        }
-      })
-      return flag
     }
   }
 }
 </script>
 <style lang='' scoped>
-.el-menu-item.is-active {
-  color: white;
-  background-color: red !important;
-}
-
 .upload:hover {
   cursor: pointer;
 }

@@ -2,6 +2,7 @@ export const ACCESS_TOKEN = 'Access-Token'
 export const USER_NAME = 'User_Name'
 export const USER_PASSWORD = 'USER_PASSWORD'
 export const USER_ENTITYNAME = 'USER_ENTITYNAME'
+export const MENU_INDEX = 'MENU_INDEX'
 
 export const SIDEBAR_TYPE = 'sidebar_type'
 export const TOGGLE_MOBILE_TYPE = 'is_mobile'

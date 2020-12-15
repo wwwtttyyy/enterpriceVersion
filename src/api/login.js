@@ -1,15 +1,17 @@
 import axios from 'axios'
-import storage from 'store'
+// import storage from 'store'
 // eslint-disable-next-line no-unused-vars
 import request from '@/api/request'
 import qs from 'qs'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
+// import { ACCESS_TOKEN } from '@/store/mutation-types'
 const baseUrl = 'http://localhost:7001'
-const token = storage.get(ACCESS_TOKEN)
+// const token = storage.get(ACCESS_TOKEN)
+const token = sessionStorage.getItem('token')
+
 const login = (data) => {
   return new Promise((resolve, reject) => {
     axios({
-      url: baseUrl + '/login',
+      url: baseUrl + '/unitLogin',
       method: 'post',
       data: data,
       headers: {
@@ -27,7 +29,7 @@ const login = (data) => {
 const register = (data) => {
   return new Promise((resolve, reject) => {
     axios({
-      url: baseUrl + '/login/register',
+      url: baseUrl + '/unitLogin/register',
       method: 'post',
       data: data,
       headers: {
@@ -45,7 +47,7 @@ const register = (data) => {
 
 const getInfo = (data) => {
   return request({
-    url: '/login/getInfo?' + qs.stringify(data),
+    url: '/unitLogin/getInfo?' + qs.stringify(data),
     method: 'get',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
