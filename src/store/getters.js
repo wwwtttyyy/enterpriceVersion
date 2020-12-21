@@ -11,7 +11,8 @@ const getters = {
   userInfo: state => state.user.info,
   addRouters: state => state.permission.addRouters,
   currentMenu: state => state.permission.currentMenu,
-  multiTab: state => state.app.multiTab
+  multiTab: state => state.app.multiTab,
+  unitName: state => state.user.unitName
 }
 
 export default getters

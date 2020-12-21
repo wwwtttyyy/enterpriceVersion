@@ -11,13 +11,13 @@
             </div>
             <div class="card-body" >
               <el-form label-width="0px" :model="form" ref="form" :rules="rules"  >
-                <el-form-item prop="enterprice" style="padding-left:0px">
-                  <el-input placeholder="请输入单位名称" v-model="form.enterprice">
+                <el-form-item prop="unitName" style="padding-left:0px">
+                  <el-input placeholder="请输入单位名称" v-model="form.unitName">
                     <template slot="prepend">单位</template>
                   </el-input>
                 </el-form-item>
-                <el-form-item prop="name" style="padding-left:0px">
-                  <el-input placeholder="请输入账户" v-model="form.name">
+                <el-form-item prop="account" style="padding-left:0px">
+                  <el-input placeholder="请输入账户" v-model="form.account">
                     <template slot="prepend">账户</template>
                   </el-input>
                 </el-form-item>
@@ -49,15 +49,15 @@ export default {
   data() {
     return {
       form: {
-        enterprice: '',
-        name: '',
+        unitName: '',
+        account: '',
         password: ''
       },
       rules: {
-        enterprice: [
+        unitName: [
           { required: true, message: '请输入单位名称', trigger: 'blur' }
         ],
-        name: [
+        account: [
           { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]

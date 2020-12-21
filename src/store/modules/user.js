@@ -1,7 +1,7 @@
 import storage from 'store'
 import { login, getInfo } from '@/api/login'
 import { ACCESS_TOKEN, USER_NAME, USER_PASSWORD, USER_ENTITYNAME } from '@/store/mutation-types'
-
+import store from '@/store'
 const user = {
   state: {
     token: '',
@@ -9,7 +9,8 @@ const user = {
     welcome: '',
     avatar: '',
     roles: [],
-    info: {}
+    info: {},
+    unitName: ''
   },
 
   mutations: {
@@ -28,6 +29,9 @@ const user = {
     },
     SET_INFO: (state, info) => {
       state.info = info
+    },
+    SET_UNITNAME: (state, unitName) => {
+      state.unitName = unitName
     }
   },
 
@@ -39,9 +43,13 @@ const user = {
           const result = response
           sessionStorage.setItem('token', result.data[0].token)
           storage.set(ACCESS_TOKEN, result.data[0].token, 7 * 24 * 60 * 60 * 1000)
-          storage.set(USER_NAME, userInfo.name)
-          storage.set(USER_PASSWORD, userInfo.password)
-          storage.set(USER_ENTITYNAME, userInfo.enterprice)
+          const info = result.data[0].result[0]
+          storage.set(USER_NAME, info.account)
+          storage.set(USER_PASSWORD, info.password)
+          storage.set(USER_ENTITYNAME, info.unitName)
+          sessionStorage.setItem('role', info.role)
+          sessionStorage.setItem('unitName', info.unitName)
+          commit('SET_ROLES', info.role)
           commit('SET_TOKEN', result.token) // 保存token
           resolve()
         }).catch(error => {
@@ -82,6 +90,7 @@ const user = {
       commit('SET_INFO', {})
       storage.remove(ACCESS_TOKEN)
       sessionStorage.setItem('token', '')
+      store.dispatch('reset')
     }
 
   }

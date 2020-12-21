@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import $conf from './common/config/config'
 import store from './store'
 Vue.prototype.$conf = $conf
+Vue.prototype.$store = store
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(Antd)
@@ -25,18 +26,24 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
       next()
     } else {
-      if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
-        store.dispatch('GetInfo').then(res => { // 拉取info
-          const role = res.data.role
-          store.dispatch('permission', { role }).then(() => { // 生成可访问的路由表
-            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-            console.log(store.getters.addRouters[0].children)
-            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-          })
-          // next()
-        }).catch(err => {
-          console.log(err)
+      const role = sessionStorage.getItem('role')
+      // console.log(role)
+      // console.log(store.getters.addRouters.length)
+      // next()
+      if (store.getters.addRouters.length === 0) { // 判断当前用户是否已拉取完信息
+        store.dispatch('permission', role).then(() => { // 生成可访问的路由表
+          router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+          console.log('111')
+          console.log(store.getters.addRouters[0].children)
+          next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
         })
+        // store.dispatch('GetInfo').then(res => { // 拉取info
+        //   const role = res.data.role
+
+        //   // next()
+        // }).catch(err => {
+        //   console.log(err)
+        // })
       } else {
         next() // 当有用户权限的时候，说明所有可访问路由已生成 如访问没权限的全面会自动进入404页面
       }

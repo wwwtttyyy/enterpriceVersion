@@ -166,7 +166,7 @@
 
 <script>
 import card from '@/views/components/card'
-import {register} from '@/api/login'
+import {register, setLoginAccount} from '@/api/login'
 export default {
   components: {
     card
@@ -242,6 +242,14 @@ export default {
       let data = this.ruleForm
       this.$delete(data, 'checkpassword')
       const res = await register(data)
+      const temp = {
+        role: 'unit',
+        account: data.creditCode,
+        password: data.password,
+        unitName: data.entityName
+      }
+      await setLoginAccount(temp) // 只能被一家任命为工作人员
+      console.log(temp)
       console.log(res)
     },
     submitForm() {

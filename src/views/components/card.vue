@@ -6,7 +6,6 @@
         <div  style="float: right">
           <slot name="head"></slot>
         </div>
-
       </div>
       <div class="card-body">
         <slot name='body'> </slot>

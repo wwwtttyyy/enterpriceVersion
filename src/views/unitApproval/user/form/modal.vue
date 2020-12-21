@@ -2,18 +2,14 @@
 <template>
   <div style="display:inline-block">
     <!-- <el-button type="text" @click="dialogFormVisible = true">2</el-button> -->
-    <div align="left">
-      <div @click="dialogFormVisible = true">
-        <slot name="component" @click="dialogFormVisible = true"></slot>
+    <div @click="dialogFormVisible = true" ><slot name="component" @click="dialogFormVisible = true"></slot></div>
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" :width="width">
+      <slot name="content"></slot>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submit()">确 定</el-button>
       </div>
-      <el-dialog :title="title" :visible.sync="dialogFormVisible" :width="width">
-        <slot name="content"></slot>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="submit()">确 定</el-button>
-        </div>
-      </el-dialog>
-    </div>
+    </el-dialog>
   </div>
 
 </template>

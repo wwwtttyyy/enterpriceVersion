@@ -2,9 +2,9 @@
 
   <el-container style="position:absolute;top:140px;bottom:0;left:20px;right:0;overflow:hidden">
     <el-container style="position:absolute;top:0;bottom:0;left:0;right:0;overflow:hidden">
-      <el-aside width="250px" class="bg-white" style="overflow:hidden;padding:20px">
+      <el-aside width="250px" class="bg-white" style="padding:20px">
         <div style="height:40px;line-height:40px;text-align:center;display:flex;background-color:#F2F6FC">
-          <span style="text-align:center;margin:0 auto">职称评审</span>
+          <span style="text-align:center;margin:0 auto">申办职称</span>
         </div>
         <el-menu class="el-menu-demo border-0" mode="vertical" :default-active="currentPath">
           <!-- <el-menu-item style="text-align:center" :index="item.path" v-for="(item, index) in subMenu" :key="index" @click="jumpToPage(item.path)">{{item.title }}</el-menu-item> -->
@@ -41,7 +41,7 @@ export default {
     this.currentPath = this.$route.path
     // this.subMenu =
     // console.log(this.$conf.titleApprisal.list)
-    this.subMenu = this.$conf.titleApprisal.list
+    this.subMenu = this.$conf.unitApproval.list
     console.log(this.subMenu)
   },
 
@@ -66,32 +66,6 @@ export default {
       if (path === this.$route.path) return
       this.$router.push(path)
     }
-    // getSubMenu() {
-    //   this.currentindex = this.$route.path
-    //   let routers = store.getters.addRouters[0].children
-    //   routers.forEach((item) => {
-    //     if (item.children && this.find(item.children, this.currentPath)) {
-    //       let index = 0
-    //       this.subMenu = item.children.map((item) => {
-    //         const obj = {
-    //           index: index++,
-    //           title: item.meta.title,
-    //           path: item.path
-    //         }
-    //         return obj
-    //       })
-    //     }
-    //   })
-    // },
-    // find(father, son) {
-    //   let flag = false
-    //   father.forEach((item) => {
-    //     if (item.path === son) {
-    //       flag = true
-    //     }
-    //   })
-    //   return flag
-    // }
   }
 }
 </script>

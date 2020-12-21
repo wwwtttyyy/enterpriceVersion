@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       menuList: [],
-      currentPath: '/organization/index',
+      currentPath: store.getters.addRouters[0].children[0].path,
       activeIndex: '0'
     }
   },
@@ -51,7 +51,8 @@ export default {
     // console.log(this.$route.path)
     // this.currentPath = this.$route.path
     this.menuList = store.getters.currentMenu
-    console.log(this.menuList)
+    // this.currentPath
+    // console.log(this.menuList)
   },
 
   components: {},

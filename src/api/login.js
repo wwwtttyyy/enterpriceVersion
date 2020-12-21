@@ -56,27 +56,32 @@ const getInfo = (data) => {
   })
 }
 
-// const getInfo = (data) => {
-//   return new Promise((resolve, reject) => {
-//     axios({
-//       url: baseUrl + '/login/getInfo?' + qs.stringify(data),
-//       method: 'get',
-//       headers: {
-//         'content-Type': 'application/json',
-//         Authorization: 'Bearer ' + token
-//       }
-//     })
-//       .then((res) => {
-//         resolve(res.data)
-//       })
-//       .catch((res) => {
-//         reject(res)
-//       })
-//   })
-// }
+const setLoginAccount = (body) => {
+  return request({
+    url: '/setLoginAccount',
+    method: 'post',
+    data: body,
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+      // Authorization: 'Bearer ' + token
+    }
+  })
+}
+const delLoginAccount = (key) => {
+  return request({
+    url: '/delLoginAccount?account=' + key,
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      Authorization: 'Bearer ' + token
+    }
+  })
+}
 
 export {
   login,
   register,
-  getInfo
+  getInfo,
+  setLoginAccount,
+  delLoginAccount
 }

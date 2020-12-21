@@ -49,9 +49,20 @@ const modifyWorker = (body) => {
     }
   })
 }
+const delWorker = (id) => {
+  return request({
+    url: '/unit/organization/delWorker?id=' + id,
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      Authorization: 'Bearer ' + token
+    }
+  })
+}
 export {
   getUserInfo,
   addWorker,
   getWorker,
-  modifyWorker
+  modifyWorker,
+  delWorker
 }

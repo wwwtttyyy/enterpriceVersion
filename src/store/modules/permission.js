@@ -18,10 +18,16 @@ const permission = {
       let routeArr = deepCopy(asyncRouterMap)
       const result = filterAsyncRoute(routeArr, role)
       // 生成主菜单
+      console.log(result)
+      console.log(role)
       const menu = createMenu(result)
       // console.log(menu)
       commit('SET_ASYNCROUTE', result)
       commit('SET_CURRENTMENU', menu)
+    },
+    reset({commit}) {
+      commit('SET_ASYNCROUTE', [])
+      commit('SET_CURRENTMENU', [])
     }
   }
 }
@@ -41,7 +47,7 @@ function createMenu(route) {
 
 function filterAsyncRoute(routerMap, role) {
   const accessRouter = routerMap.filter(route => {
-    if (route.meta.role.indexOf(role.role) >= 0) {
+    if (route.meta.role.indexOf(role) >= 0) {
       if (route.children && route.children.length) {
         route.children = filterAsyncRoute(route.children, role)
       }

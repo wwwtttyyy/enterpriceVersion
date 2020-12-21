@@ -25,6 +25,7 @@
 <script>
 import modal from '@/views/components/modal'
 import {getUserInfo, addWorker} from '@/api/organization'
+// import store from '@/store'
 export default {
   name: '',
   data() {
@@ -59,10 +60,10 @@ export default {
     async additem() {
       const data = this.tableData[0]
       // eslint-disable-next-line no-undef
-      // console.log(this.$store.getters.userInfo)
-      data.unitName = this.$store.getters.userInfo.entityName
+      data.unitName = sessionStorage.getItem('unitName')
       data.start = false
       const res = await addWorker(data)
+
       this.$emit('refresh')
       console.log(res)
     }

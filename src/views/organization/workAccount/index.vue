@@ -20,7 +20,9 @@
 import card from '@/views/components/card'
 import tables from '@/views/components/tables'
 import addAccount from './addAccount'
-import {getWorker, modifyWorker} from '@/api/organization'
+import {getWorker, modifyWorker, delWorker} from '@/api/organization'
+import {setLoginAccount, delLoginAccount} from '@/api/login'
+
 export default {
   name: '',
   props: [''],
@@ -54,17 +56,34 @@ export default {
   },
 
   methods: {
+    async addLoginAccount(data) {
+      const temp = {
+        role: 'worker',
+        account: data.certificateNum,
+        password: data.password,
+        unitName: sessionStorage.getItem('unitName')
+      }
+      console.log(temp)
+      await setLoginAccount(temp)
+    },
+    async delLoginAccount(data) {
+      console.log(data)
+      await delLoginAccount(data.certificateNum) // 根据账户名删除
+    },
     async changeState(data) {
       console.log(data)
       if (data.start === 1) {
         data.start = 0
+        await modifyWorker(data)
+        this.delLoginAccount(data)
       } else {
         data.start = 1
+        await modifyWorker(data)
+        this.addLoginAccount(data)
       }
-      await modifyWorker(data)
     },
     async getWorker() {
-      const res = await getWorker(this.$store.getters.userInfo.entityName)
+      const res = await getWorker(sessionStorage.getItem('unitName'))
       this.tableData = res.data
       console.log(res)
     },
@@ -76,8 +95,10 @@ export default {
     saveMessage() {
       this.$router.push('/titleAppraisal/edit/pages/mainExperience')
     },
-    deleteData() {
-
+    async deleteData(data) {
+      console.log(data)
+      await delWorker(data.id)
+      this.getWorker()
     }
   }
 }

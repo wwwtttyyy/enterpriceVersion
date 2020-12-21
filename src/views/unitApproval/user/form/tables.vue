@@ -2,16 +2,16 @@
   <div>
     <el-table :data="tableData" row-key="id" border>
       <el-table-column v-for="(item, index) in col" :key="`col_${index}`" :prop="col[index].prop" :label="item.label" align="center"></el-table-column>
-      <el-table-column prop="operation" label="操作" width="150px" align="center">
+      <el-table-column prop="operation" label="操作" width="150px">
         <template slot-scope="scope">
-          <modal :title="modalTitle">
-            <el-button @click="handleClick(scope.row)" style="padding:10px" slot="component" type="primary" icon="el-icon-more"></el-button>
+          <modal :title="modalTitle" @handleConfirm='confirm'>
+            <el-button @click="handleClick(scope.row)" style="padding:10px" slot="component" type="primary" icon="el-icon-edit"></el-button>
             <div slot="content" >
               <slot></slot>
             </div>
+            <!-- <performance-reward-form slot="content" @click="handleClick(scope.row)"></performance-reward-form> -->
           </modal>
-          <slot name="start"  :data="scope.row"></slot>
-          <el-button v-if="show" @click="deleteMessageBox(scope.row)" style="padding:10px;margin-left:10px" type="danger" icon="el-icon-delete"></el-button>
+          <el-button @click="deleteMessageBox(scope.row)" style="padding:10px;margin-left:10px" type="danger" icon="el-icon-delete"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -33,12 +33,6 @@ export default {
       type: Array,
       default() {
         return []
-      }
-    },
-    show: {
-      type: Boolean,
-      default() {
-        return true
       }
     },
     modalTitle: {
@@ -65,6 +59,9 @@ export default {
   computed: {},
 
   methods: {
+    confirm() {
+      this.$emit('confirmChange')
+    },
     rowDrop() {
       // 此时找到的元素是要拖拽元素的父容器
       const tbody = document.querySelector('.el-table__body-wrapper tbody')
