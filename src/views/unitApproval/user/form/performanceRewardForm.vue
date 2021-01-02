@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-form :disabled=true  label-position="top" :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
+    <el-form :disabled=true  label-position="top"  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
       <el-form-item prop="rewardName" label="项目名称">
         <el-input v-model="form.rewardName" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>
       <el-form-item prop="rewardLevel" label="奖励等级">
-        <el-select v-model="form.rewardLevel" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.rewardLevel" placeholder=""  :style="{width:inputWidth}">
           <el-option label="国家级" value='国家级'></el-option>
           <el-option label="省部级" value='省部级'></el-option>
           <el-option label="市厅级" value='市厅级'></el-option>

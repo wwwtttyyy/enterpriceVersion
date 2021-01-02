@@ -9,6 +9,9 @@ import { VueAxios } from './axios'
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
+  headers: {
+    'Access-Control-Allow-Origin': '*'
+  },
   baseURL: 'http://localhost:7001',
   timeout: 6000 // 请求超时时间
 })

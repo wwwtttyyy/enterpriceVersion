@@ -2,7 +2,7 @@
   <div>
     <card title="从业或职（执）业资格" >
       <div slot="body">
-        <tables :show=false modalTitle="从业或职（执）业资格" :tableData="tableData" :col="col" >
+        <tables @setRow='getRow' :show=false modalTitle="从业或职（执）业资格" :tableData="tableData" :col="col" >
           <qualification-form></qualification-form>
         </tables>
       </div>
@@ -47,6 +47,11 @@ export default {
   },
 
   methods: {
+    getRow(row) {
+      // 获取到当前行的数据
+      Object.assign(this.currentRow, row)
+      console.log(this.currentRow)
+    },
     async getInfo() {
       console.log(sessionStorage.getItem('usercertificateNum'))
       const param = {

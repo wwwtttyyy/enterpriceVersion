@@ -2,7 +2,7 @@
   <div>
     <card title="主要经历">
       <div slot="body">
-        <tables :show=false :tableData="tableData" :col="col" modalTitle="主要经历">
+        <tables @setRow='getRow' :show=false :tableData="tableData" :col="col" modalTitle="主要经历">
           <experience-form :data="currentRow" ref="editForm"></experience-form>
         </tables>
       </div>
@@ -51,6 +51,11 @@ export default {
   },
 
   methods: {
+    getRow(row) {
+      // 获取到当前行的数据
+      Object.assign(this.currentRow, row)
+      console.log(this.currentRow)
+    },
     async getInfo() {
       console.log(sessionStorage.getItem('usercertificateNum'))
       const param = {

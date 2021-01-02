@@ -1,6 +1,7 @@
+
 <template>
   <div>
-    <el-form :disabled=true  label-position="top" :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
+    <el-form :disabled=true  label-position="top"  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
       <el-form-item prop="projectName" label="业绩名称（如项目，专利，课题等）">
         <el-input v-model="form.projectName" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>

@@ -119,6 +119,7 @@ export default {
       console.log(row)
       sessionStorage.setItem('usercertificateNum', row.certificateNum)
       sessionStorage.setItem('applier', row.applier)
+      sessionStorage.setItem('declareNum', row.id)
       if (path === this.$route.path) return
       this.$router.push(path)
     }

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-form :disabled=true label-position="top" :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="90px">
+    <el-form :disabled=true label-position="top"  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="90px">
       <el-form-item prop="publishTime" label="发表时间">
         <el-date-picker v-model="form.publishTime" placeholder="" :style="{width:inputWidth}"></el-date-picker>
       </el-form-item>
       <el-form-item prop="bookType" label="论文类型">
-        <el-select v-model="form.bookType" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.bookType" placeholder=""  :style="{width:inputWidth}">
           <el-option label="国内核心期刊（中文核心）" value='国内核心期刊（中文核心）'></el-option>
           <el-option label="国内核心期刊（科技核心）" value='国内核心期刊（科技核心）'></el-option>
           <el-option label="国际权威索引" value='国际权威索引'></el-option>
@@ -15,7 +15,7 @@
         </el-select>
       </el-form-item>
       <el-form-item prop="jues" label="角色">
-        <el-select v-model="form.jues" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.jues" placeholder=""  :style="{width:inputWidth}">
           <el-option label="独著" value='独著'></el-option>
           <el-option label="主编" value='主编'></el-option>
           <el-option label="编委" value='编委'></el-option>
@@ -24,14 +24,14 @@
         </el-select>
       </el-form-item>
       <el-form-item prop="mainBook" label="核心期刊">
-        <el-select v-model="form.mainBook" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.mainBook" placeholder=""  :style="{width:inputWidth}">
           <el-option label="2004年-中国预防兽医年报" value='2004年-中国预防兽医学报'></el-option>
           <el-option label="2004年-中国兽医杂志" value='2004年-中国兽医杂志'></el-option>
           <el-option label="其他" value='其他'></el-option>
         </el-select>
       </el-form-item>
       <el-form-item prop="opus" label="是否代表作">
-        <el-select v-model="form.magnum" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.magnum" placeholder=""  :style="{width:inputWidth}">
           <el-option label="是" value='是'></el-option>
           <el-option label="否" value='否'></el-option>
         </el-select>
@@ -40,7 +40,7 @@
         <el-input v-model="form.bookNum" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>
       <el-form-item prop="foreignIndex" label="国外权威索引收录">
-        <el-select v-model="form.foreignIndex" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.foreignIndex" placeholder=""  :style="{width:inputWidth}">
           <el-option  label="SCI " value='SCI '></el-option>
           <el-option  label="EI  " value='EI  '></el-option>
           <el-option  label="SSCI" value='SSCI'></el-option>
@@ -58,13 +58,13 @@
         <el-input v-model="form.bookName" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>
       <el-form-item prop="show" label="是否在推荐表上显示此论文、著作">
-        <el-select v-model="form.show" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.show" placeholder=""  :style="{width:inputWidth}">
           <el-option label="是" value='是'></el-option>
           <el-option label="否" value='否'></el-option>
         </el-select>
       </el-form-item>
       <el-form-item prop="bookLevel" label="论文级别">
-        <el-select v-model="form.bookLevel" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.bookLevel" placeholder=""  :style="{width:inputWidth}">
           <el-option label="国家级" value='国家级'></el-option>
           <el-option label="省部级" value='省部级'></el-option>
           <el-option label="市厅级" value='市厅级'></el-option>

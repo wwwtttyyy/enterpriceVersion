@@ -2,7 +2,7 @@
   <div>
     <card title="业绩专利" >
       <div slot="body">
-        <tables modalTitle="业绩专利" :tableData="tableData" :col="col">
+        <tables @setRow='getRow' modalTitle="业绩专利" :tableData="tableData" :col="col">
           <performance-patent-form :data="currentRow" ref="editForm"></performance-patent-form>
         </tables>
       </div>
@@ -46,6 +46,11 @@ export default {
   },
 
   methods: {
+    getRow(row) {
+      // 获取到当前行的数据
+      Object.assign(this.currentRow, row)
+      console.log(this.currentRow)
+    },
     async getInfo() {
       console.log(sessionStorage.getItem('usercertificateNum'))
       const param = {

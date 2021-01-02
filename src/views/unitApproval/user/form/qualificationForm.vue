@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :disabled=true  label-position="top" :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
+    <el-form :disabled=true  label-position="top"  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
       <el-form-item prop="qualiName" label="资格名称">
         <el-input v-model="form.qualiName" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>

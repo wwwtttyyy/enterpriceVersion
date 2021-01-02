@@ -14,4 +14,12 @@ module.exports = {
             .set('base',resolve('src/base'))
             .set('static',resolve('src/static'))
     }
+    // devServer: {
+    //   proxy: {
+    //     'localhost': {
+    //       target: '47.115.145.237',
+          
+    //     }
+    //   },
+    // }
 }

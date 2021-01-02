@@ -2,13 +2,13 @@
   <div>
     <card title="主管单位意见">
       <div slot="head">
-        <el-button type="primary" style="padding:7px">保存</el-button>
+        <el-button type="primary" style="padding:7px" @click="submit">保存</el-button>
       </div>
       <div slot="body">
         <div>
-          <el-form :inline="true" :model="form" class="demo-form-inline" label-width='100px' label-position='top'>
-            <el-form-item label="主管单位意见">
-              <el-input type="textarea" v-model="form.content" placeholder="" style="width:800px" :rows="10"></el-input>
+          <el-form :inline="true" :rules="rules" ref="ruleForm" :model="form" class="demo-form-inline" label-width='100px' label-position='top'>
+            <el-form-item label="主管单位意见" prop="content">
+              <el-input type="textarea"  v-model="form.content" placeholder="" style="width:800px" :rows="10"></el-input>
             </el-form-item>
           </el-form>
         </div>
@@ -19,6 +19,7 @@
 
 <script>
 import card from '@/views/components/card'
+import {setsubmitReview, getsubmitReview, updatesubmitReview} from '@/api/titleApprisal'
 export default {
   name: '',
   props: [''],
@@ -26,12 +27,32 @@ export default {
     return {
       form: {
         content: ''
+      },
+      rules: {
+        content: [{ required: true, message: '该项为必填项', trigger: 'blur' }]
+      },
+      data: {
+        basicUnit: '',
+        defense: '',
+        expertOpinion: '',
+        mainUnit: '',
+        public: '',
+        reviewTeam: '',
+        score: '',
+        unitLeader: '',
+        reformDepart: '',
+        reviewResult: '',
+        returnOpinion: '',
+        declareNum: sessionStorage.getItem('declareNum')
       }
     }
   },
 
   created() {
-    this.$emit('refresh')
+    this.getData().then((data) => {
+      if (data === undefined) return
+      this.form.content = data.mainUnit
+    })
   },
 
   components: {
@@ -41,9 +62,45 @@ export default {
   computed: {},
 
   methods: {
-    jumpToPage(path) {
-      if (path === this.$route.path) return
-      this.$router.push(path)
+    async getData() {
+      const param = {
+        declareNum: sessionStorage.getItem('declareNum')
+      }
+      const res = await getsubmitReview(param)
+      return res.data[0]
+    },
+    async setData(data) {
+      await setsubmitReview(data)
+    },
+    async update(data) {
+      await updatesubmitReview(data)
+    },
+    submit() {
+      this.$refs['ruleForm'].validate((valid) => {
+        if (valid) {
+          this.getData().then((res) => {
+            if (res) {
+              res.mainUnit = this.form.content
+              this.update(res).then(() => {
+                this.$notify({
+                  title: '',
+                  message: '保存成功',
+                  type: 'success'
+                })
+              })
+            } else {
+              this.data.mainUnit = this.form.content
+              this.setData(this.data).then(() => {
+                this.$notify({
+                  title: '',
+                  message: '保存成功',
+                  type: 'success'
+                })
+              })
+            }
+          })
+        }
+      })
     }
   }
 }

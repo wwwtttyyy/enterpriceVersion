@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :disabled=true :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="80px" label-position="top">
+    <el-form :disabled=true  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="80px" label-position="top">
       <el-form-item prop="startTime" label="开始时间">
         <el-date-picker v-model="form.startTime" placeholder="" :style="{width:inputWidth}"></el-date-picker>
       </el-form-item>

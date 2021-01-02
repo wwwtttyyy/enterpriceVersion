@@ -3,8 +3,8 @@
   <el-container style="position:absolute;top:140px;bottom:0;left:20px;right:0;overflow:hidden">
     <el-container style="position:absolute;top:0;bottom:0;left:0;right:0;overflow:hidden">
       <el-aside width="250px" class="bg-white" style="padding:20px">
-        <div style="height:40px;line-height:40px;text-align:center;display:flex;background-color:#F2F6FC">
-          <span style="text-align:center;margin:0 auto">申办职称</span>
+        <div style="height:50px;line-height:50px;text-align:center;display:flex;background-color:#F2F6FC">
+          <span style="text-align:center;margin:0 auto;font-size:15px">申办职称</span>
         </div>
         <el-menu class="el-menu-demo border-0" mode="vertical" :default-active="currentPath">
           <!-- <el-menu-item style="text-align:center" :index="item.path" v-for="(item, index) in subMenu" :key="index" @click="jumpToPage(item.path)">{{item.title }}</el-menu-item> -->

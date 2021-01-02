@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-form :disabled=true  label-position="top" :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
+    <el-form :disabled=true  label-position="top"  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
       <el-form-item prop="patentName" label="专利名称">
         <el-input v-model="form.patentName" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>
       <el-form-item prop="patentType" label="专利类型">
-        <el-select v-model="form.patentType" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.patentType" placeholder=""  :style="{width:inputWidth}">
           <el-option label="发明" value='发明'></el-option>
           <el-option label="实用新型" value='实用新型'></el-option>
           <el-option label="外观设计" value='外观设计'></el-option>

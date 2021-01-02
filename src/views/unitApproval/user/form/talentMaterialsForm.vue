@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :disabled=true :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="120px" label-position="top">
+    <el-form :disabled=true  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="120px" label-position="top">
       <el-form-item prop="materialName" label="材料名称">
         <el-input v-model="form.materialName" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>

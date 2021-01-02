@@ -4,7 +4,7 @@
       <div slot="body">
         <el-form label-position="top" :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="110px">
           <el-form-item prop="jobSummary" label="工作总结" style="display:block">
-            <el-input :autosize="{ minRows: 10, maxRows: 40}" type="textarea" placeholder="请输入内容" v-model="form.jobSummary" show-word-limit></el-input>
+            <el-input :autosize="{ minRows: 10, maxRows: 40}" type="textarea" placeholder="暂无" v-model="form.jobSummary" show-word-limit></el-input>
           </el-form-item>
         </el-form>
         <!-- <el-button type="danger">同意并报送</el-button> -->

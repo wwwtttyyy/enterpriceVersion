@@ -2,7 +2,7 @@
   <div>
     <card title="论文、著作" >
       <div slot="body">
-        <tables :show=false modalTitle="论文、著作" :tableData="tableData" :col="col">
+        <tables :show=false modalTitle="论文、著作" :tableData="tableData" :col="col" @setRow='getRow'>
           <academic-form  :data="currentRow" ref="editForm"></academic-form>
         </tables>
       </div>
@@ -56,6 +56,7 @@ export default {
     getRow(row) {
       // 获取到当前行的数据
       Object.assign(this.currentRow, row)
+      console.log(this.currentRow)
     },
     async getInfo() {
       console.log(sessionStorage.getItem('usercertificateNum'))

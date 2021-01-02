@@ -29,7 +29,47 @@ function get (api) {
 const getDeclare = (params) => {
   return get('/unit/appraisal/getdeclare?' + qs.stringify(params))
 }
+function setsubmitReview (body) {
+  return request({
+    url: '/unit/submitReview',
+    method: 'post',
+    data: body,
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      Authorization: 'Bearer ' + token
+    }
+  })
+}
+const getsubmitReview = (params) => {
+  return get('/unit/getsubmitReview?' + qs.stringify(params))
+}
+function updatesubmitReview (body) {
+  return request({
+    url: '/unit/updatesubmitReview',
+    method: 'put',
+    data: body,
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      Authorization: 'Bearer ' + token
+    }
+  })
+}
+
+function updatedeclarestate (params) {
+  return request({
+    url: '/unit/appraisal/updatedeclarestate?' + qs.stringify(params),
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      Authorization: 'Bearer ' + token
+    }
+  })
+}
 export {
   setBasicInfo,
-  getDeclare
+  getDeclare,
+  updatedeclarestate,
+  setsubmitReview,
+  getsubmitReview,
+  updatesubmitReview
 }

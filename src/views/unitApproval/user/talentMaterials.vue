@@ -2,7 +2,7 @@
   <div>
     <card title="人才引进相关材料" >
       <div slot="body">
-        <tables :show=false modalTitle="新增引进人才相关材料" :tableData="tableData" :col="col">
+        <tables @setRow='getRow' :show=false modalTitle="新增引进人才相关材料" :tableData="tableData" :col="col">
           <talentMaterials-form></talentMaterials-form>
         </tables>
       </div>
@@ -47,6 +47,11 @@ export default {
   },
 
   methods: {
+    getRow(row) {
+      // 获取到当前行的数据
+      Object.assign(this.currentRow, row)
+      console.log(this.currentRow)
+    },
     async getInfo() {
       console.log(sessionStorage.getItem('usercertificateNum'))
       const param = {

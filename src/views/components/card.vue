@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="card">
-      <div class="card-header" :style="{'background-color':bgc}">
-        <span>{{title}}</span>
+    <div class="card ">
+      <div class="card-header " :style="{'background-color':bgc}" >
+        <span style="font-size:15px">{{title}}</span>
         <div  style="float: right">
           <slot name="head"></slot>
         </div>
@@ -27,7 +27,7 @@ export default {
     bgc: {
       type: String,
       default() {
-        return ''
+        return '#f2f6fc'
       }
     }
   },

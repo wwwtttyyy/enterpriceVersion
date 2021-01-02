@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :rules="rules" ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="100px" label-position="top" disabled='true'>
+    <el-form  ref="ruleForm" :inline="true" :model="form" class="demo-form-inline" label-width="100px" label-position="top" :disabled=true>
       <el-form-item prop="graduateTime" label="毕业时间">
         <el-date-picker v-model="form.graduateTime" placeholder="" :style="{width:inputWidth}"></el-date-picker>
       </el-form-item>
@@ -8,7 +8,7 @@
         <el-input v-model="form.school" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>
       <el-form-item prop="project" label="学历项目">
-        <el-select v-model="form.project" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.project" placeholder=""  :style="{width:inputWidth}">
           <el-option label="无学历" value="无学历"></el-option>
           <el-option label="第一学历" value="第一学历"></el-option>
           <el-option label="第二学历" value="第二学历"></el-option>
@@ -21,7 +21,7 @@
         <el-input v-model="form.profession" placeholder="" :style="{width:inputWidth}"></el-input>
       </el-form-item>
       <el-form-item prop="education" label="学历">
-        <el-select v-model="form.education" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.education" placeholder=""  :style="{width:inputWidth}">
           <el-option label="博士研究生" value="博士研究生"></el-option>
           <el-option label="硕士研究生" value="硕士研究生"></el-option>
           <el-option label="本科" value="本科"></el-option>
@@ -32,7 +32,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="学位" prop="eduSystem">
-        <el-select v-model="form.eduSystem" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.eduSystem" placeholder=""  :style="{width:inputWidth}">
           <el-option label="博士" value="博士"></el-option>
           <el-option label="硕士" value="硕士"></el-option>
           <el-option label="学士" value="学士"></el-option>
@@ -41,7 +41,7 @@
         </el-select>
       </el-form-item>
       <el-form-item prop="degree" label="学制">
-        <el-select v-model="form.degree" placeholder="请选择" :style="{width:inputWidth}">
+        <el-select v-model="form.degree" placeholder=""  :style="{width:inputWidth}">
           <el-option label="5" value="5"></el-option>
           <el-option label="4" value="4"></el-option>
           <el-option label="3" value="3"></el-option>
@@ -64,9 +64,6 @@
         </el-dialog>
       </el-form-item>
     </el-form>
-    <el-alert type="warning" :closable="false" show-icon>
-      <p style="font-size:13px">民营企业、社会组织及自由职业参评人员，教育部学信网不能够查询到学历的需提供学历证书、查档材料或学历认证机构出具的学历认证等相关材料。取得硕士（博士）学位的，请上传硕士学位证书。</p>
-    </el-alert>
   </div>
 </template>
 

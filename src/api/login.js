@@ -15,6 +15,7 @@ const login = (data) => {
       method: 'post',
       data: data,
       headers: {
+        'Access-Control-Allow-Origin': '*',
         'content-Type': 'application/json'
       }
     })
@@ -33,6 +34,7 @@ const register = (data) => {
       method: 'post',
       data: data,
       headers: {
+        'Access-Control-Allow-Origin': '*',
         'content-Type': 'application/json'
       }
     })
